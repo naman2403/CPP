@@ -1,22 +1,32 @@
-
 #include <iostream>
+
 using namespace std;
-void hanoi(int n,char src,char help,char dest)
+
+void toh(int n, char from, char to, char aux)
 {
-    if(n==0)
-    {
-        return ;
-    }
-    
-    
-        hanoi(n-1,src,dest,help);
-        cout<<"Moving ring "<<n<<" from "<<src<<" to "<<dest<<endl;
-        hanoi(n-1,help,src,dest);
+	if(n==0)
+	{
+		return;
+	}
+        if(n==1)
+        {
+                 cout<<"\nMOVE DISK FROM TOWER "<<from<<" TO TOWER "<<to; 
+        }
+        else
+        {
+                toh(n-1,from,aux,to);
+                cout<<"\nMOVE DISK FROM TOWER "<<from<<" TO TOWER "<<to;
+                toh(n-1,aux,to,from);
+        } 
 }
-int main(int argc, char **argv)
+
+int main()
 {
-	int n;
-    cin>>n;
-    hanoi(n,'A','C','B');
-	return 0;
+        int n;
+ 
+        cout<<"ENTER NUMBER OF DISKS: ";
+        cin>>n;
+ 
+        toh(n,'A','C','B');
+        return 0;
 }
